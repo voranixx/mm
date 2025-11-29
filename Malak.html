@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For Malak | All U Need Is Love</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #ff8fab;
+            --accent: #ffb7c5;
+            --gold: #d4af37;
+            --dark-bg: #0f0508;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-muted: #cccccc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(45, 27, 46, 0.8) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(61, 43, 62, 0.8) 0%, transparent 40%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3d2b3e;
+            border-radius: 4px;
+        }
+
+        /* Utility: Glass Effect */
+        .glass {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        /* Intro Video Overlay */
+        .intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .intro-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .intro-content {
+            width: 90%;
+            max-width: 800px;
+            aspect-ratio: 16/9;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(255, 143, 171, 0.2);
+            position: relative;
+        }
+
+        .intro-embed {
+            width: 100%;
+            height: 100%;
+        }
+
+        .intro-message {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: var(--primary);
+            padding: 15px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+        }
+
+        /* Surprise Video Modal (New) */
+        .surprise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20000; /* Higher than everything */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease;
+            flex-direction: column;
+        }
+
+        .surprise-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .surprise-content {
+            width: 100%;
+            height: 100%;
+            max-width: 500px; /* Limit width for vertical video feel */
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .surprise-video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 177.917%; /* Aspect ratio from user */
+            height: 0;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(255, 143, 171, 0.3);
+        }
+
+        .surprise-video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .close-surprise-btn {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20001;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9em;
+        }
+
+        .close-surprise-btn:hover {
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 8%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDIiLz4KPC9zdmc+');
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            flex: 1;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5em;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            background: linear-gradient(45deg, #fff, #ffdde1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .hero-content .love {
+            display: block;
+            color: var(--primary);
+            -webkit-text-fill-color: var(--primary);
+            font-style: italic;
+            font-size: 0.6em;
+            margin-top: 15px;
+            text-shadow: 0 0 20px rgba(255, 143, 171, 0.4);
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .circle-bg {
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: breathe 6s ease-in-out infinite;
+        }
+
+        .couple-image {
+            width: 92%;
+            height: 92%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 143, 171, 0.3);
+            box-shadow: 0 0 40px rgba(255, 143, 171, 0.2);
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            z-index: 2;
+        }
+
+        .hero-image:hover .couple-image {
+            transform: scale(1.03) rotate(2deg);
+        }
+
+        .orbit-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: spin 20s linear infinite;
+        }
+
+        .orbit-ring::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -3px;
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        /* Memories & Counters */
+        .memories {
+            padding: 80px 8%;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 60px;
+            color: var(--text-main);
+        }
+
+        .section-title span {
+            color: var(--primary);
+            font-style: italic;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 143, 171, 0.2);
+            z-index: -1;
+            transform: skewX(-10deg);
+        }
+
+        .counters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 100px;
+        }
+
+        .counter-box {
+            padding: 40px 20px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .counter-box:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .counter-number {
+            font-size: 3.5em;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 5px;
+            text-shadow: 0 0 20px rgba(255, 143, 171, 0.3);
+        }
+
+        .counter-label {
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* Video Album */
+        .album-container {
+            margin-top: 50px;
+        }
+        
+        .album-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .video-card {
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            group: hover;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            border-color: rgba(255, 143, 171, 0.4);
+        }
+
+        .thumbnail-wrapper {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .thumbnail-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .video-card:hover .thumbnail-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .play-btn-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .play-btn-overlay i {
+            font-size: 50px;
+            color: #fff;
+            filter: drop-shadow(0 0 10px var(--primary));
+            transform: scale(0.8);
+            transition: transform 0.3s;
+        }
+
+        .video-card:hover .play-btn-overlay {
+            opacity: 1;
+        }
+
+        .video-card:hover .play-btn-overlay i {
+            transform: scale(1);
+        }
+
+        .card-info {
+            padding: 25px;
+        }
+
+        .card-date {
+            color: var(--primary);
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .card-title {
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* Secret Section */
+        .secret-section {
+            padding: 100px 8%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, var(--dark-bg), #1a0a14);
+        }
+
+        .secret-container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .secret-title {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .secret-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .input-group {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .secret-input {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 15px 25px;
+            border-radius: 50px;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .secret-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(255, 143, 171, 0.2);
+        }
+
+        .unlock-btn {
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: none;
+            background: linear-gradient(45deg, var(--primary), #ffb7c5);
+            color: #1a0a14;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0 5px 20px rgba(255, 143, 171, 0.3);
+        }
+
+        .unlock-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Message Box */
+        .secret-message {
+            margin-top: 40px;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: left;
+            position: relative;
+            animation: slideUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 30px rgba(255, 143, 171, 0.1) inset;
+        }
+
+        .secret-message h3 {
+            color: var(--primary);
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+
+        .secret-message p {
+            font-size: 1.1em;
+            color: #e0e0e0;
+            margin-bottom: 15px;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .signature {
+            margin-top: 30px;
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            font-size: 1.4em !important;
+            font-style: italic;
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            margin-top: 15px;
+            font-size: 0.9em;
+            animation: shake 0.5s;
+        }
+
+        /* Modals */
+        .video-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .video-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-wrapper {
+            width: 90%;
+            max-width: 900px;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 0 50px rgba(255, 143, 171, 0.2);
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .video-modal.active .modal-wrapper {
+            transform: scale(1);
+        }
+
+        .streamable-embed {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: #fff;
+            background: none;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+            color: var(--primary);
+        }
+
+        /* Helpers */
+        .hidden { display: none !important; }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+
+        /* Mobile Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 120px 5% 60px;
+                gap: 50px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8em;
+            }
+
+            .circle-bg {
+                width: 300px;
+                height: 300px;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .counters {
+                grid-template-columns: 1fr;
+            }
+
+            .input-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .secret-input {
+                width: 100%;
+            }
+
+            .unlock-btn {
+                width: 100%;
+            }
+
+            .intro-content {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="intro-overlay" id="introOverlay">
+        <div class="intro-content glass">
+            <iframe 
+                class="intro-embed"
+                src="https://streamable.com/e/qi6u3l?autoplay=1&muted=0"
+                frameborder="0"
+                allow="autoplay; fullscreen"
+                allowfullscreen>
+            </iframe>
+            <div class="intro-message">
+                <i class="fas fa-heart"></i> Watch until the end...
+            </div>
+        </div>
+    </div>
+
+    <div class="surprise-overlay" id="surpriseOverlay">
+        <div class="surprise-content">
+            <div class="surprise-video-wrapper">
+                <iframe 
+                    id="surpriseFrame"
+                    allow="fullscreen" 
+                    allowfullscreen 
+                    src=""
+                    style="border:none; overflow:hidden;">
+                </iframe>
+            </div>
+            <button class="close-surprise-btn" onclick="closeSurprise()">
+                Read The Message <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>
+                I STILL NEED YOU<br>
+                <span class="love">I STILL LOVE YOU.</span>
+            </h1>
+        </div>
+        <div class="hero-image">
+            <div class="circle-bg">
+                <div class="orbit-ring"></div>
+                <img src="https://raw.githubusercontent.com/voranixx/CC-BOT/5e859ea49ab1e95cdddaa4543851855a4604162f/IMG-20250428-WA0002-removebg-preview.png" alt="Malak & You" class="couple-image">
+            </div>
+        </div>
+    </section>
+
+    <section class="memories" id="memories">
+        <h2 class="section-title">Law Nasya <span>Ana Lsa Fakr</span></h2>
+
+        <div class="counters">
+            <div class="counter-box glass">
+                <div class="counter-number" id="daysTogether">0</div>
+                <div class="counter-label"><i class="fas fa-heartbeat" style="margin-right: 8px;"></i> Days Together</div>
+            </div>
+            <div class="counter-box glass">
+                <div class="counter-number" id="daysApart">0</div>
+                <div class="counter-label"><i class="fas fa-heart-broken" style="margin-right: 8px;"></i> Days Apart</div>
+            </div>
+            <div class="counter-box glass">
+                <div class="counter-number" id="totalDays">0</div>
+                <div class="counter-label"><i class="fas fa-calendar-alt" style="margin-right: 8px;"></i> Total Days</div>
+            </div>
+        </div>
+
+        <h3 class="section-title" style="font-size: 2em; margin-top: 50px;">
+            Msh bshola kda nb3d ya Malak<br><span style="font-size: 0.8em">fe memories</span>
+        </h3>
+        
+        <div class="album-container">
+            <div class="album-grid">
+                
+                <div class="video-card glass" onclick="openVideo('https://streamable.com/e/vn7ngg')">
+                    <div class="thumbnail-wrapper">
+                        <img src="https://i.ibb.co/vC787W4F/Snapchat-673671468.jpg" alt="First Date">
+                        <div class="play-btn-overlay"><i class="fas fa-play-circle"></i></div>
+                    </div>
+                    <div class="card-info">
+                        <span class="card-date">Ramadan 14, 2024</span>
+                        <div class="card-title">First Date</div>
+                    </div>
+                </div>
+
+                <div class="video-card glass" onclick="openVideo('https://streamable.com/e/4qrtq5')">
+                    <div class="thumbnail-wrapper">
+                        <img src="https://i.ibb.co/hTF5pjv/IMG-20250614-WA0096.jpg" alt="Valentine's">
+                        <div class="play-btn-overlay"><i class="fas fa-play-circle"></i></div>
+                    </div>
+                    <div class="card-info">
+                        <span class="card-date">July 14, 2025</span>
+                        <div class="card-title">Ahla mara shoftk feha mabsota</div>
+                    </div>
+                </div>
+
+                <div class="video-card glass" onclick="openVideo('https://streamable.com/e/lal8zz')">
+                    <div class="thumbnail-wrapper">
+                        <img src="https://i.ibb.co/5hGrk4wG/IMG-20240828-WA0000.jpg" alt="Beach">
+                        <div class="play-btn-overlay"><i class="fas fa-play-circle"></i></div>
+                    </div>
+                    <div class="card-info">
+                        <span class="card-date">August 27, 2024</span>
+                        <div class="card-title">Aktr mara kan shaklk helw feha</div>
+                    </div>
+                </div>
+
+                <div class="video-card glass" onclick="openVideo('https://streamable.com/e/tlilsu')">
+                    <div class="thumbnail-wrapper">
+                        <img src="https://i.ibb.co/CpRnNqHB/Snapchat-967382545.jpg" alt="Dinner">
+                        <div class="play-btn-overlay"><i class="fas fa-play-circle"></i></div>
+                    </div>
+                    <div class="card-info">
+                        <span class="card-date">October 10, 2024</span>
+                        <div class="card-title">kan awl mara kul haga rekbna 3rbya swa w kalna m3 b3d w yom mn awlo m3 ba3d</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="secret-section">
+        <div class="secret-container glass" style="padding: 40px; border-radius: 30px;">
+            <h2 class="secret-title"><i class="fas fa-lock"></i> Secret Message</h2>
+            <p class="secret-subtitle">Enter our special date to unlock what's in my heart</p>
+            
+            <div class="input-group">
+                <input type="date" id="secretDate" class="secret-input" required>
+                <button onclick="checkDate()" class="unlock-btn">
+                    Unlock <i class="fas fa-key" style="margin-left:5px"></i>
+                </button>
+            </div>
+
+            <div id="errorMessage" class="error-message hidden">
+                <i class="fas fa-times-circle"></i> That's not the date... try again.
+            </div>
+
+            <div id="secretMessage" class="secret-message glass hidden">
+                <h3>Maluk <i class="fas fa-heart" style="font-size: 0.8em; color: var(--primary);"></i></h3>
+                <p>azyk ya malak lw 3rfty tfty el Message de yb2a lsa fakra hagat, malak ana lsa bahbk lsa 3ndy aml hata wnty m2afla kul haga.</p> 
+                <p>enty 3rfteny f zrof sa3ba msh awl ma nbd2 nzbt nfsna wnfkr bgd nb3d bshola kda mynf3sh, 2ultely hashel elblock mn sa3tha wna bhawl aklmk wna msh 3arf ya malak fe klam kter 3awz a2ulhulk w fe klam aktr 3awz asm3o mnk.</p>
+                <p>ahna msh kda ya malak ahna mlnash da3wa bhd ahna mkansh lena gher ba3d ya malak msh ay kelmten tt2al t2lb eledonya kda.</p>
+                <p>khaleky 3arfa eny hafdl ahbk ya malak da bs ely 3awzk t3rafeh w enty kunty malya 3eny wna mumkn mkontsh 3arf a3br 3la da sam7eny b3d aznk. lw msm7any ya malak hastna call mnk atmn 3liky bs.</p>
+                <p>ana kunt bahbk w lsa bahbk w msh 3arf ma7bkesh.</p>
+                <p class="signature">Forever yours.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="video-modal" id="mainModal">
+        <div class="modal-wrapper">
+            <button class="close-modal" onclick="closeVideo()">
+                <i class="fas fa-times"></i>
+            </button>
+            <iframe 
+                id="modalFrame"
+                class="streamable-embed"
+                src=""
+                frameborder="0"
+                allow="autoplay; fullscreen"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    <audio id="backgroundMusic" loop>
+        <source src="https://github.com/voranixx/CC-BOT/raw/refs/heads/main/Amr%20Diab%20-%20Makanak%20Fe%20Alby%20(Official%20Lyric%20Video)%20%20(%D9%83%D9%84%D9%85%D8%A7%D8%AA)%20%D8%B9%D9%85%D8%B1%D9%88%20%D8%AF%D9%8A%D8%A7%D8%A8%20-%20%D9%85%D9%83%D8%A7%D9%86%D9%83%20%D9%81%D9%8A%20%D9%82%D9%84%D8%A8%D9%8A%20-%20Amr%20Diab_%5Bcut_263sec%5D.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const startDate = new Date('2024-01-15');
+        const separationStart = new Date('2024-07-01');
+        const separationEnd = new Date('2024-08-15');
+        const music = document.getElementById('backgroundMusic');
+        const introOverlay = document.getElementById('introOverlay');
+        const mainModal = document.getElementById('mainModal');
+        const modalFrame = document.getElementById('modalFrame');
+        const surpriseOverlay = document.getElementById('surpriseOverlay');
+        const surpriseFrame = document.getElementById('surpriseFrame');
+
+        // Initial Load
+        window.addEventListener('load', function() {
+            music.volume = 0.5;
+            startIntroMonitoring();
+            calculateDays();
+        });
+
+        // Intro Logic
+        function startIntroMonitoring() {
+            // Force finish after 50 seconds (approx video length + buffer)
+            setTimeout(finishIntro, 50000); 
+            
+            // Allow manual click if needed or to unmute audio context
+            document.body.addEventListener('click', () => {
+                if (music.paused && introOverlay.classList.contains('hidden')) {
+                    music.play();
+                }
+            }, { once: true });
+        }
+
+        function finishIntro() {
+            if (introOverlay.classList.contains('hidden')) return;
+            
+            // Reset intro video to stop sound
+            const introFrame = document.querySelector('.intro-embed');
+            const src = introFrame.src;
+            introFrame.src = src.replace('autoplay=1', 'autoplay=0');
+
+            introOverlay.classList.add('hidden');
+            
+            // Try to play background music
+            music.play().catch(e => {
+                console.log("Autoplay blocked waiting for interaction");
+            });
+        }
+
+        // Improved Video Modal Logic
+        function openVideo(url) {
+            fadeAudio(0.1);
+            const autoPlayUrl = url.includes('?') ? `${url}&autoplay=1` : `${url}?autoplay=1`;
+            modalFrame.src = autoPlayUrl;
+            mainModal.classList.add('active');
+        }
+
+        function closeVideo() {
+            mainModal.classList.remove('active');
+            setTimeout(() => { modalFrame.src = ""; }, 400);
+            fadeAudio(0.5);
+        }
+
+        mainModal.addEventListener('click', (e) => {
+            if (e.target === mainModal) closeVideo();
+        });
+
+        // Smooth Audio Fader
+        let fadeInterval;
+        function fadeAudio(targetVolume) {
+            clearInterval(fadeInterval);
+            fadeInterval = setInterval(() => {
+                const step = 0.05;
+                if (Math.abs(music.volume - targetVolume) < step) {
+                    music.volume = targetVolume;
+                    clearInterval(fadeInterval);
+                } else if (music.volume > targetVolume) {
+                    music.volume -= step;
+                } else {
+                    music.volume += step;
+                }
+            }, 100);
+        }
+
+        // Counters Logic
+        function calculateDays() {
+            const today = new Date();
+            const totalDays = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+            const daysApart = Math.floor((separationEnd - separationStart) / (1000 * 60 * 60 * 24));
+            const daysTogether = totalDays - daysApart;
+
+            animateValue("daysTogether", 0, daysTogether, 2000);
+            animateValue("daysApart", 0, daysApart, 2000);
+            animateValue("totalDays", 0, totalDays, 2000);
+        }
+
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Secret Date & Surprise Video Logic
+        function checkDate() {
+            const input = document.getElementById('secretDate');
+            const message = document.getElementById('secretMessage');
+            const error = document.getElementById('errorMessage');
+            
+            if (input.value === '2024-08-08') {
+                error.classList.add('hidden');
+                
+                // 1. Play Surprise Video
+                playSurprise();
+                
+                // 2. Prepare message for later (remove hidden but it's behind modal)
+                message.classList.remove('hidden');
+                
+            } else {
+                message.classList.add('hidden');
+                error.classList.remove('hidden');
+                setTimeout(() => error.classList.add('hidden'), 3000);
+            }
+        }
+
+        function playSurprise() {
+            // Fade out music
+            fadeAudio(0); 
+            
+            // Set source with autoplay
+            surpriseFrame.src = "https://streamable.com/e/gahacc?autoplay=1";
+            
+            // Show overlay
+            surpriseOverlay.classList.add('active');
+        }
+
+        function closeSurprise() {
+            // Hide overlay
+            surpriseOverlay.classList.remove('active');
+            
+            // Stop video
+            setTimeout(() => {
+                surpriseFrame.src = "";
+            }, 400);
+
+            // Restore music and scroll to message
+            fadeAudio(0.5);
+            document.getElementById('secretMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+</body>
+</html>
